@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Meep_Android_Test</string>
+    <string name="entry_point_title">Choose a location</string>
+    <string name="lisbon_button_text">Lisbon</string>
 </resources>
