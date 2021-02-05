@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Meep_Android_Test"
