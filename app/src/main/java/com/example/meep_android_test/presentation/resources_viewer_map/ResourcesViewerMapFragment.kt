@@ -27,7 +27,7 @@ class ResourcesViewerMapFragment : Fragment(), OnMapReadyCallback {
         mapView.getMapAsync(this)
     }
 
-    override fun onMapReady(p0: GoogleMap?) {
-        
+    override fun onMapReady(googleMap: GoogleMap) {
+        gMap = googleMap
     }
 }
