@@ -14,6 +14,21 @@ buildscript {
     }
 }
 
+task checkMapsApiKey {
+    def hasApiKey = project.hasProperty('MAPS_API_KEY')
+
+    println "has api key: " + hasApiKey
+    println "your api key: " + project.getProperty('MAPS_API_KEY')
+
+    if (!hasApiKey) {
+        throw new StopExecutionException("This project should contain a valid API KEY in your gradle.properties with the name MAPS_API_KEY")
+    }
+}
+
+gradle.taskGraph.whenReady {
+    checkMapsApiKey
+}
+
 allprojects {
     repositories {
         google()
