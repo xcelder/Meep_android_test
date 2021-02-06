@@ -1,10 +1,10 @@
-package com.example.meep_android_test.presentation
+package com.example.meep_android_test.features
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.meep_android_test.R
-import com.example.meep_android_test.presentation.entry_point.EntryPointFragment
+import com.example.meep_android_test.features.entry_point.presentation.EntryPointFragment
 
 class MainActivity : AppCompatActivity() {
 

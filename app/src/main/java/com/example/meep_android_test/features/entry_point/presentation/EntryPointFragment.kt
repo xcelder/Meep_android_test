@@ -1,4 +1,4 @@
-package com.example.meep_android_test.presentation.entry_point
+package com.example.meep_android_test.features.entry_point.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater

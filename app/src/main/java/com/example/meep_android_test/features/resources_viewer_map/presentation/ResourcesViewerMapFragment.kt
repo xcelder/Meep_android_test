@@ -1,4 +1,4 @@
-package com.example.meep_android_test.presentation.resources_viewer_map
+package com.example.meep_android_test.features.resources_viewer_map.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
