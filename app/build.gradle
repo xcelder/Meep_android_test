@@ -15,7 +15,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [ mapsApiKey : project.getProperty("MAPS_API_KEY") ]
+
+        buildConfigField 'String', 'MAPS_ACCESS_TOKEN', project.getProperty('MAPBOX_PUBLIC_TOKEN').toString()
     }
 
     buildFeatures.dataBinding = true
@@ -43,8 +44,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     // UI
     implementation 'com.google.android.material:material:1.3.0'
-    implementation 'com.google.android.libraries.maps:maps:3.1.0-beta'
-    implementation 'com.google.android.gms:play-services-gcm:17.0.0'
+    implementation('com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.1') {
+        exclude group: 'group_name', module: 'module_name'
+    }
     implementation 'androidx.fragment:fragment-ktx:1.2.5'
 
     // DATA

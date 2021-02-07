@@ -13,3 +13,5 @@ fun String.toLatLng(): LatLng? = runCatching {
     val lng = values[1].toDouble()
     LatLng(lat, lng)
 }.getOrNull()
+
+fun LatLng.toMapBoxLatLng() = com.mapbox.mapboxsdk.geometry.LatLng(lat, lng)

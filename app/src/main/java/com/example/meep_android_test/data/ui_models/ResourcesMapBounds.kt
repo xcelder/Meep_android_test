@@ -16,3 +16,9 @@ val ResourcesMapBounds.lowerLeftLatLng: LatLng
 
 val ResourcesMapBounds.upperRightLatLng: LatLng
     get() = LatLng(top, right)
+
+val ResourcesMapBounds.center: LatLng
+        get() = LatLng(
+            lat = (top + bottom) / 2,
+            lng = (left + right) / 2
+        )

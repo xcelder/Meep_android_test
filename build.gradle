@@ -1,4 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+def MAPS_API_KEY_PROPERTY = "MAPBOX_DOWNLOADS_TOKEN"
+def MAPS_PUBLIC_API_KEY_PROPERTY = "MAPBOX_PUBLIC_TOKEN"
+
 buildscript {
     ext.kotlin_version = "1.3.72"
     repositories {
@@ -15,10 +18,13 @@ buildscript {
 }
 
 task checkMapsApiKey {
-    def hasApiKey = project.hasProperty('MAPS_API_KEY')
+    def hasApiKey = project.hasProperty(MAPS_API_KEY_PROPERTY)
+    def hasPublicApiKey = project.hasProperty(MAPS_PUBLIC_API_KEY_PROPERTY)
 
     println "has api key: " + hasApiKey
-    println "your api key: " + project.getProperty('MAPS_API_KEY')
+    println "your api key: " + project.getProperty(MAPS_API_KEY_PROPERTY)
+    println "has public api key: " + hasPublicApiKey
+    println "your public api key: " + project.getProperty(MAPS_PUBLIC_API_KEY_PROPERTY)
 
     if (!hasApiKey) {
         throw new StopExecutionException("This project should contain a valid API KEY in your gradle.properties with the name MAPS_API_KEY")
@@ -33,6 +39,19 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            credentials {
+                // Do not change the username below.
+                // This should always be `mapbox` (not your username).
+                username = 'mapbox'
+                // Use the secret token you stored in gradle.properties as the password
+                password = project.getProperty(MAPS_API_KEY_PROPERTY) ?: ""
+            }
+        }
     }
 }
 
