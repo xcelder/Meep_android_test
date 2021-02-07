@@ -2,6 +2,7 @@ package com.example.meep_android_test.features.resources_viewer_map.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.meep_android_test.data.network_models.ResourceResponseItem
 
 class ResourcesViewerMapViewState {
 
@@ -18,8 +19,8 @@ class ResourcesViewerMapViewState {
         updateState(ResourcesViewerMapState.Moved)
     }
 
-    fun changeStateToResourcesLoaded() {
-        updateState(ResourcesViewerMapState.AreaResourcesLoaded(emptyList()))
+    fun changeStateToResourcesLoaded(resources: List<ResourceResponseItem>) {
+        updateState(ResourcesViewerMapState.AreaResourcesLoaded(resources))
     }
 
     fun changeStateToError() {

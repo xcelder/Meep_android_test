@@ -29,8 +29,10 @@ class ResourcesViewerMapPresenter(
                     resourcesRepository.retrieveResourcesInBounds(resourcesMapBounds)
                 }
             }
-                .onSuccess { viewState.changeStateToResourcesLoaded() }
-                .onFailure { viewState.changeStateToError() }
+                .onSuccess { viewState.changeStateToResourcesLoaded(it) }
+                .onFailure {
+                    viewState.changeStateToError()
+                }
         }
     }
 }

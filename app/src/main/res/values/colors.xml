@@ -7,6 +7,11 @@
     <color name="deep_orange_secondary">#c41c00</color>
     <color name="indigo_primary">#3f51b5</color>
     <color name="indigo_secondary">#002984</color>
+    <color name="red">#c62828</color>
+    <color name="pink">#d81b60</color>
+    <color name="purple">#8e24aa</color>
+    <color name="blue">#1e88e5</color>
+    <color name="green">#43a047</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

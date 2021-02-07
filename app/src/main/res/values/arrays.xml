@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="marker_colors">
+        <item>@color/deep_orange_primary</item>
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/green</item>
+        <item>@color/purple</item>
+        <item>@color/pink</item>
+    </array>
+</resources>

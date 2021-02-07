@@ -1,9 +1,11 @@
 package com.example.meep_android_test.data.network_models
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 private const val MOPED_VALUE = "MOPED"
 
+@JsonClass(generateAdapter = true)
 data class ResourceResponseItem(
     @Json(name = "id") val id: String,
     @Json(name = "name") val name: String,
@@ -11,7 +13,7 @@ data class ResourceResponseItem(
     @Json(name = "y") val y: Double,
     @Json(name = "scheduledArrival") val scheduledArrival: Int? = null,
     @Json(name = "locationType") val locationType: Int? = null,
-    @Json(name = "companyZoneId") val companyZoneID: Long,
+    @Json(name = "companyZoneId") val companyZoneID: Int,
     @Json(name = "lat") val lat: Double? = null,
     @Json(name = "lon") val lon: Double? = null,
     @Json(name = "licencePlate") val licencePlate: String? = null,
