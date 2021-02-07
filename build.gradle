@@ -22,13 +22,14 @@ task checkMapsApiKey {
     def hasPublicApiKey = project.hasProperty(MAPS_PUBLIC_API_KEY_PROPERTY)
 
     println "has api key: " + hasApiKey
-    println "your api key: " + project.getProperty(MAPS_API_KEY_PROPERTY)
     println "has public api key: " + hasPublicApiKey
-    println "your public api key: " + project.getProperty(MAPS_PUBLIC_API_KEY_PROPERTY)
 
-    if (!hasApiKey) {
-        throw new StopExecutionException("This project should contain a valid API KEY in your gradle.properties with the name MAPS_API_KEY")
+    if (!hasApiKey || !hasPublicApiKey) {
+        throw new StopExecutionException("This project should contain a valid MAPBOX API KEY in your gradle.properties with the name MAPBOX_DOWNLOADS_TOKEN and an access token with name MAPBOX_PUBLIC_TOKEN")
     }
+
+    println "your api key: " + project.getProperty(MAPS_API_KEY_PROPERTY)
+    println "your public api key: " + project.getProperty(MAPS_PUBLIC_API_KEY_PROPERTY)
 }
 
 gradle.taskGraph.whenReady {
