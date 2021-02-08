@@ -32,6 +32,6 @@ When we reach this screen, there will be a Map situated in the center of the giv
 When the resources are loaded, it will be displayed as markers on the map. When we tap on a marker, a `BottomSheetDialog` will appear with the details of the resource.
 I we move the map position, the "Search" button will appear again.
 
-[1]: ./app/src/main/com/example/meep_android_test/features/MainActivity.kt
-[2]: ./app/src/main/com/example/meep_android_test/features/entry_point/presentation/EntryPointFragment.kt
-[3]: ./app/src/main/com/example/meep_android_test/features/resources_viewer_map/presentation/ResourcesViewerMapFragment.kt
+[1]: https://github.com/xcelder/Meep_android_test/blob/main/app/src/main/java/com/example/meep_android_test/features/MainActivity.kt
+[2]: https://github.com/xcelder/Meep_android_test/blob/main/app/src/main/java/com/example/meep_android_test/features/entry_point/presentation/EntryPointFragment.kt
+[3]: https://github.com/xcelder/Meep_android_test/blob/main/app/src/main/java/com/example/meep_android_test/features/resources_viewer_map/presentation/ResourcesViewerMapFragment.kt
