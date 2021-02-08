@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.annotation.ColorInt
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -34,7 +35,6 @@ private const val LOWER_LEFT_ARG = "lower_left_arg"
 private const val UPPER_RIGHT_ARG = "upper_right_arg"
 private const val CITY_ZOOM_VALUE = 15.0
 private const val CAMERA_ANIMATION_DURATION = 1000
-
 
 class ResourcesViewerMapFragment : Fragment() {
 
@@ -112,6 +112,7 @@ class ResourcesViewerMapFragment : Fragment() {
     private fun handleStateChange(state: ResourcesViewerMapState) = when (state) {
         is ResourcesViewerMapState.AreaResourcesLoaded -> onAreaResourcesLoaded(state.resources)
         is ResourcesViewerMapState.ResourceDetail -> showResourceDetails(state.resourceResponseItem)
+        is ResourcesViewerMapState.Error -> showErrorDialog()
         else -> { /*no-op*/ }
     }
 
@@ -158,8 +159,6 @@ class ResourcesViewerMapFragment : Fragment() {
     }
 
     private fun onAreaResourcesLoaded(resources: List<ResourceResponseItem>) {
-
-
         var pickerColorPosition = 0
         val availableColors = getResources().obtainTypedArray(R.array.marker_colors)
         val alreadyUsedColors = mutableMapOf<Int, Int>()
@@ -190,6 +189,13 @@ class ResourcesViewerMapFragment : Fragment() {
 
     private fun dismissResourcesDetails() {
         resourceDetailBottomSheet?.dismiss()
+    }
+
+    private fun showErrorDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(R.string.resources_error_dialog_msg)
+            .setPositiveButton(R.string.resources_error_dialog_ok_btn) { dialog, _ -> dialog.dismiss()  }
+            .show()
     }
 
     override fun onStart() {

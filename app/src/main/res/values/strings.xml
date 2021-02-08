@@ -15,4 +15,8 @@
     <string name="resource_allow_drop_off">Allow drop off</string>
     <string name="resource_allow_drop_off_yes">Yes</string>
     <string name="resource_allow_drop_off_no">No</string>
+
+<!--    Error-->
+    <string name="resources_error_dialog_msg">Something went wrong, please try again later</string>
+    <string name="resources_error_dialog_ok_btn">Ok</string>
 </resources>
