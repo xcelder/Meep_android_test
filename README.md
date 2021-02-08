@@ -1,7 +1,7 @@
 # Meep_android_test
 App to check the resources for mobility in the city
 
-**Given some issues with the billing accounts on Google Cloud, the map implementation was done using MapBox instead of GoogleMaps**
+> Given some issues with the billing accounts on Google Cloud, the map implementation was done using MapBox instead of GoogleMaps
 
 ## Architecture MVP-ViewModel
 
