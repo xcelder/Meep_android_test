@@ -7,5 +7,7 @@
         <item>@color/green</item>
         <item>@color/purple</item>
         <item>@color/pink</item>
+        <item>@color/indigo_primary</item>
+        <item>@color/teal_200</item>
     </array>
 </resources>

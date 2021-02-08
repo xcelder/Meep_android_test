@@ -1,5 +1,6 @@
 package com.example.meep_android_test.features.resources_viewer_map.business
 
+import com.example.meep_android_test.data.network_models.ResourceResponseItem
 import com.example.meep_android_test.data.repository.ResourcesRepository
 import com.example.meep_android_test.data.ui_models.ResourcesMapBounds
 import com.example.meep_android_test.features.resources_viewer_map.presentation.ResourcesViewerMapViewState
@@ -34,5 +35,9 @@ class ResourcesViewerMapPresenter(
                     viewState.changeStateToError()
                 }
         }
+    }
+
+    fun onMarkerSelected(resourceResponseItem: ResourceResponseItem) {
+        viewState.changeStateToResourceDetail(resourceResponseItem)
     }
 }

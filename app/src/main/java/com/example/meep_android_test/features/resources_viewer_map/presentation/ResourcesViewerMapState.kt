@@ -11,4 +11,6 @@ sealed class ResourcesViewerMapState {
     object Error : ResourcesViewerMapState()
 
     class AreaResourcesLoaded(val resources: List<ResourceResponseItem>) : ResourcesViewerMapState()
+
+    class ResourceDetail(val resourceResponseItem: ResourceResponseItem) : ResourcesViewerMapState()
 }

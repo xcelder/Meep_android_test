@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
@@ -16,31 +14,21 @@ import androidx.lifecycle.Observer
 import com.example.meep_android_test.BuildConfig
 import com.example.meep_android_test.R
 import com.example.meep_android_test.data.network_models.ResourceResponseItem
-import com.example.meep_android_test.data.ui_models.ResourcesMapBounds
-import com.example.meep_android_test.data.ui_models.lowerLeftLatLng
-import com.example.meep_android_test.data.ui_models.upperRightLatLng
-import com.example.meep_android_test.data.ui_models.toLatLng
-import com.example.meep_android_test.data.ui_models.center
-import com.example.meep_android_test.data.ui_models.toMapBoxLatLng
+import com.example.meep_android_test.data.ui_models.*
 import com.example.meep_android_test.databinding.ResourcesViewerMapFragmentBinding
 import com.example.meep_android_test.features.resources_viewer_map.business.ResourcesViewerMapViewModel
 import com.example.meep_android_test.features.resources_viewer_map.business.createResourcesViewerMapViewModel
+import com.example.meep_android_test.features.resources_viewer_map.presentation.extensions.buildResourcesDetailBottomSheet
+import com.example.meep_android_test.features.resources_viewer_map.presentation.extensions.toMarkerView
 import com.example.meep_android_test.utils.tint
-import com.mapbox.geojson.Feature
-import com.mapbox.geojson.FeatureCollection
-import com.mapbox.geojson.Point
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
-import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.plugins.markerview.MarkerView
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 
 private const val LOWER_LEFT_ARG = "lower_left_arg"
 private const val UPPER_RIGHT_ARG = "upper_right_arg"
@@ -81,13 +69,9 @@ class ResourcesViewerMapFragment : Fragment() {
         }
     }
 
-    private val stateObserver = Observer<ResourcesViewerMapState> {
-        when (it) {
-            is ResourcesViewerMapState.AreaResourcesLoaded -> onAreaResourcesLoaded(it.resources)
-            else -> { /*no-op*/
-            }
-        }
-    }
+    private var resourceDetailBottomSheet: BottomSheetDialog? = null
+
+    private val stateObserver = Observer<ResourcesViewerMapState> { handleStateChange(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,6 +107,12 @@ class ResourcesViewerMapFragment : Fragment() {
     private fun setupViewInteractions(view: View) {
         val searchButton: Button = view.findViewById(R.id.searchButton)
         searchButton.setOnClickListener { onRequestNewResources() }
+    }
+
+    private fun handleStateChange(state: ResourcesViewerMapState) = when (state) {
+        is ResourcesViewerMapState.AreaResourcesLoaded -> onAreaResourcesLoaded(state.resources)
+        is ResourcesViewerMapState.ResourceDetail -> showResourceDetails(state.resourceResponseItem)
+        else -> { /*no-op*/ }
     }
 
     private fun onMapReady(mapBoxMap: MapboxMap) {
@@ -168,33 +158,39 @@ class ResourcesViewerMapFragment : Fragment() {
     }
 
     private fun onAreaResourcesLoaded(resources: List<ResourceResponseItem>) {
+
+
         var pickerColorPosition = 0
         val availableColors = getResources().obtainTypedArray(R.array.marker_colors)
         val alreadyUsedColors = mutableMapOf<Int, Int>()
-        resources
-            .groupBy { it.companyZoneID }
-            .entries.forEach { (key, values) ->
-                val colorTint = alreadyUsedColors[key]
-                    ?: availableColors.getColor(pickerColorPosition, 0)
-                        .also { pickerColorPosition++ }
-                val drawable = getDrawableTintedWithColor(colorTint)
-
-                values.forEach {
-                    val imageView = ImageView(context).apply {
-                        val markerSize = getResources().getDimensionPixelSize(R.dimen.marker_size)
-                        layoutParams = FrameLayout.LayoutParams(markerSize, markerSize)
-                        setImageDrawable(drawable)
-                    }
-                    val markerView = MarkerView(LatLng(it.y, it.x), imageView)
-                    markerViewManager?.addMarker(markerView)
+        resources.forEach {
+            val colorTint = alreadyUsedColors[it.companyZoneID]
+                ?: availableColors.getColor(pickerColorPosition, 0).also { color ->
+                    alreadyUsedColors[it.companyZoneID] = color
+                    pickerColorPosition++
                 }
-            }
+
+            val drawable = getDrawableTintedWithColor(colorTint)
+
+            val markerView = it.toMarkerView(requireContext(), drawable, viewModel.presenter::onMarkerSelected)
+            markerViewManager?.addMarker(markerView)
+        }
         availableColors.recycle()
     }
 
     private fun getDrawableTintedWithColor(@ColorInt colorTint: Int) =
-        ResourcesCompat.getDrawable(getResources(), R.drawable.icon_maps_maker, context?.theme)
+        ResourcesCompat.getDrawable(resources, R.drawable.icon_maps_maker, context?.theme)
             ?.tint(colorTint)
+
+    private fun showResourceDetails(resourceResponseItem: ResourceResponseItem) {
+        dismissResourcesDetails()
+        resourceDetailBottomSheet = buildResourcesDetailBottomSheet(resourceResponseItem)
+        resourceDetailBottomSheet?.show()
+    }
+
+    private fun dismissResourcesDetails() {
+        resourceDetailBottomSheet?.dismiss()
+    }
 
     override fun onStart() {
         super.onStart()

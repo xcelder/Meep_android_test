@@ -5,6 +5,6 @@ import android.widget.Button
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("visible")
-fun setVisible(button: Button, isVisible: Boolean) {
-    button.visibility = if (isVisible) View.VISIBLE else View.GONE
+fun setVisible(view: View, isVisible: Boolean) {
+    view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }

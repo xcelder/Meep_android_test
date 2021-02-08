@@ -3,4 +3,16 @@
     <string name="entry_point_title">Choose a location</string>
     <string name="lisbon_button_text">Lisbon</string>
     <string name="map_search_button">Search in this area</string>
+
+<!--    Details-->
+    <string name="resource_type">Type</string>
+    <string name="resource_model">Model</string>
+    <string name="resource_battery_level">Battery level</string>
+    <string name="resource_helmets">Helmets</string>
+    <string name="resource_license_plate">License plate</string>
+    <string name="resource_bikes_available">Available bikes</string>
+    <string name="resource_space_available">Available spaces</string>
+    <string name="resource_allow_drop_off">Allow drop off</string>
+    <string name="resource_allow_drop_off_yes">Yes</string>
+    <string name="resource_allow_drop_off_no">No</string>
 </resources>

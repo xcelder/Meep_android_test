@@ -9,7 +9,7 @@ class ResourcesViewerMapViewState {
     val state: LiveData<ResourcesViewerMapState>
         get() = _state
 
-    private val _state = MutableLiveData<ResourcesViewerMapState>(ResourcesViewerMapState.Moved)
+    private val _state = MutableLiveData<ResourcesViewerMapState>()
 
     fun changeStateToBusy() {
         updateState(ResourcesViewerMapState.Busy)
@@ -21,6 +21,10 @@ class ResourcesViewerMapViewState {
 
     fun changeStateToResourcesLoaded(resources: List<ResourceResponseItem>) {
         updateState(ResourcesViewerMapState.AreaResourcesLoaded(resources))
+    }
+
+    fun changeStateToResourceDetail(resourceResponseItem: ResourceResponseItem) {
+        updateState(ResourcesViewerMapState.ResourceDetail(resourceResponseItem))
     }
 
     fun changeStateToError() {
