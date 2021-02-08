@@ -1,6 +1,8 @@
 # Meep_android_test
 App to check the resources for mobility in the city
 
+**Given some issues with the billing accounts on Google Cloud, the map implementation was done using MapBox instead of GoogleMaps**
+
 ## Architecture MVP-ViewModel
 
 I chose this architecture because it's what I'm most used to and I think it's a simple way to separate the logic in layers and be testable. Undoubtedly,  it's not as complete as Clean architecture, but it is faster, and so I thought more suitable for this technical test.
