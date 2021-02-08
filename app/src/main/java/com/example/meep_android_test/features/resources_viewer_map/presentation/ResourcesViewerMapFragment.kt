@@ -42,8 +42,8 @@ class ResourcesViewerMapFragment : Fragment() {
         fun withArguments(locationBounds: ResourcesMapBounds): ResourcesViewerMapFragment =
             ResourcesViewerMapFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(LOWER_LEFT_ARG, locationBounds.lowerLeftLatLng.toString())
-                    putSerializable(UPPER_RIGHT_ARG, locationBounds.upperRightLatLng.toString())
+                    putSerializable(LOWER_LEFT_ARG, locationBounds.lowerLeftLatLng)
+                    putSerializable(UPPER_RIGHT_ARG, locationBounds.upperRightLatLng)
                 }
             }
     }
@@ -55,8 +55,8 @@ class ResourcesViewerMapFragment : Fragment() {
     private var markerViewManager: MarkerViewManager? = null
 
     private val resourcesMapBounds: ResourcesMapBounds? by lazy {
-        val lowerLeftVal = arguments?.getString(LOWER_LEFT_ARG)?.toLatLng()
-        val upperRightVal = arguments?.getString(UPPER_RIGHT_ARG)?.toLatLng()
+        val lowerLeftVal = arguments?.getSerializable(LOWER_LEFT_ARG) as? LatLng
+        val upperRightVal = arguments?.getSerializable(UPPER_RIGHT_ARG) as? LatLng
         if (lowerLeftVal != null && upperRightVal != null) {
             ResourcesMapBounds(
                 left = lowerLeftVal.lng,
