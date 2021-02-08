@@ -5,13 +5,13 @@
 
         <variable
             name="viewState"
-            type="com.example.meep_android_test.features.resources_viewer_map.presentation.ResourcesViewerMapViewState" />
+            type="com.example.meep_android_test.features.resourcesviewermap.presentation.ResourcesViewerMapViewState" />
 
         <variable
             name="presenter"
-            type="com.example.meep_android_test.features.resources_viewer_map.business.ResourcesViewerMapPresenter" />
+            type="com.example.meep_android_test.features.resourcesviewermap.business.ResourcesViewerMapPresenter" />
 
-        <import type="com.example.meep_android_test.features.resources_viewer_map.presentation.ResourcesViewerMapState" />
+        <import type="com.example.meep_android_test.features.resourcesviewermap.presentation.ResourcesViewerMapState" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

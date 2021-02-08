@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.meep_android_test.R
-import com.example.meep_android_test.data.ui_models.ResourcesMapBounds
-import com.example.meep_android_test.features.entry_point.presentation.EntryPointFragment
-import com.example.meep_android_test.features.resources_viewer_map.presentation.ResourcesViewerMapFragment
+import com.example.meep_android_test.data.domainmodels.ResourcesMapBounds
+import com.example.meep_android_test.features.entrypoint.presentation.EntryPointFragment
+import com.example.meep_android_test.features.resourcesviewermap.presentation.ResourcesViewerMapFragment
 
 class MainActivity : AppCompatActivity() {
 

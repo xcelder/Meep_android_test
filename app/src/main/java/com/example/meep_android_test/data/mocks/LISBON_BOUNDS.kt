@@ -1,6 +1,6 @@
 package com.example.meep_android_test.data.mocks
 
-import com.example.meep_android_test.data.ui_models.ResourcesMapBounds
+import com.example.meep_android_test.data.domainmodels.ResourcesMapBounds
 
 fun getLisbonBounds() = ResourcesMapBounds(
     left = -9.160096,

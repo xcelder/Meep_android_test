@@ -4,7 +4,7 @@
     <data>
         <variable
             name="presenter"
-            type="com.example.meep_android_test.features.entry_point.business.EntryPointPresenter" />
+            type="com.example.meep_android_test.features.entrypoint.business.EntryPointPresenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

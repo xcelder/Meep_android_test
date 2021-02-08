@@ -1,6 +1,6 @@
 package com.example.meep_android_test.network.api
 
-import com.example.meep_android_test.data.network_models.ResourceResponseItem
+import com.example.meep_android_test.data.networkmodels.ResourceResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 
