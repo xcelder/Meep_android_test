@@ -21,13 +21,17 @@ Like in MVP architecture, the events go to the `Presenter`, who manages the logi
 
 ## Project structure
 
-The project is based on one simple `Activity` (MainActivity) and there are two screens with two fragments:
+The project is based on one simple `Activity` ([MainActivity][1]) and there are two screens with two fragments:
 
-* EndpointFragment: a screen that shows a simple navigation to the Map screen.
-* ResourcesViewerMapFragment: here is the kernel of the app. Here we can control the map and search for resources.
+* [EndpointFragment][2]: a screen that shows a simple navigation to the Map screen.
+* [ResourcesViewerMapFragment][3]: here is the kernel of the app. Here we can control the map and search for resources.
 
 ### ResourcesViewerMapFragment
 
 When we reach this screen, there will be a Map situated in the center of the given bounds to search resources. When the camera stops, a button should appear to allow us to "Search in this area" the available resources. Also, if we tap on the "Search" button a `ProgressDialog` will appear in the screen and the button will disappear. In the meantime, the API call is being executed.
 When the resources are loaded, it will be displayed as markers on the map. When we tap on a marker, a `BottomSheetDialog` will appear with the details of the resource.
 I we move the map position, the "Search" button will appear again.
+
+[1]: ./app/src/main/com/example/meep_android_test/features/MainActivity.kt
+[2]: ./app/src/main/com/example/meep_android_test/features/entry_point/presentation/EntryPointFragment.kt
+[3]: ./app/src/main/com/example/meep_android_test/features/resources_viewer_map/presentation/ResourcesViewerMapFragment.kt
