@@ -24,7 +24,7 @@ fun Resource.BikeStation.getBikeStationDetailItems(context: Context): List<Pair<
     allowDropoff?.let {
         val value =
             context.getString(if (it) R.string.resource_allow_drop_off_yes else R.string.resource_allow_drop_off_no)
-        detailItems.add(R.string.resource_battery_level to value)
+        detailItems.add(R.string.resource_allow_drop_off to value)
     }
 
     return detailItems
