@@ -28,5 +28,6 @@ The project is based on one simple `Activity` (MainActivity) and there are two s
 
 ### ResourcesViewerMapFragment
 
-When we reach this screen, there will be a Map situated in the center of the given bounds to search resources. When the camera stops, a button should appear to allow us to "Search in this area" the available resources. Also, if we tap on the "Search" button a `ProgressDialog` will appear in the screen. In the meantime, the API call is being executed.
+When we reach this screen, there will be a Map situated in the center of the given bounds to search resources. When the camera stops, a button should appear to allow us to "Search in this area" the available resources. Also, if we tap on the "Search" button a `ProgressDialog` will appear in the screen and the button will disappear. In the meantime, the API call is being executed.
 When the resources are loaded, it will be displayed as markers on the map. When we tap on a marker, a `BottomSheetDialog` will appear with the details of the resource.
+I we move the map position, the "Search" button will appear again.
