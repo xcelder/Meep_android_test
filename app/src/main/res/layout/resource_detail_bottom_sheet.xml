@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="resourceItem"
-            type="com.example.meep_android_test.data.network_models.ResourceResponseItem" />
+            name="resource"
+            type="com.example.meep_android_test.data.domainmodels.Resource" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/margin_large"
             android:layout_marginEnd="@dimen/margin_medium"
             android:textAppearance="?textAppearanceHeadline6"
-            resourceTitle="@{resourceItem}"
+            resourceTitle="@{resource}"
             tools:text="@tools:sample/lorem" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/margin_medium"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            resourcesDataSource="@{resourceItem}"/>
+            resourcesDataSource="@{resource}"/>
 
     </LinearLayout>
 </layout>
