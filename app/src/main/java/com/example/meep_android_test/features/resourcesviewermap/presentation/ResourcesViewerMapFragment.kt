@@ -30,8 +30,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.markerview.MarkerViewManager
 
-private const val LOWER_LEFT_ARG = "lower_left_arg"
-private const val UPPER_RIGHT_ARG = "upper_right_arg"
+private const val RESOURCES_MAP_BOUNDS_ARG = "resources_map_bounds_arg"
 private const val CITY_ZOOM_VALUE = 15.0
 private const val CAMERA_ANIMATION_DURATION = 1000
 
@@ -41,8 +40,7 @@ class ResourcesViewerMapFragment : Fragment() {
         fun withArguments(locationBounds: ResourcesMapBounds): ResourcesViewerMapFragment =
             ResourcesViewerMapFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(LOWER_LEFT_ARG, locationBounds.lowerLeftLatLng)
-                    putSerializable(UPPER_RIGHT_ARG, locationBounds.upperRightLatLng)
+                    putSerializable(RESOURCES_MAP_BOUNDS_ARG, locationBounds)
                 }
             }
     }
@@ -54,18 +52,7 @@ class ResourcesViewerMapFragment : Fragment() {
     private var markerViewManager: MarkerViewManager? = null
 
     private val resourcesMapBounds: ResourcesMapBounds? by lazy {
-        val lowerLeftVal = arguments?.getSerializable(LOWER_LEFT_ARG) as? LatLng
-        val upperRightVal = arguments?.getSerializable(UPPER_RIGHT_ARG) as? LatLng
-        if (lowerLeftVal != null && upperRightVal != null) {
-            ResourcesMapBounds(
-                left = lowerLeftVal.lng,
-                top = upperRightVal.lat,
-                right = upperRightVal.lng,
-                bottom = lowerLeftVal.lat
-            )
-        } else {
-            null
-        }
+        arguments?.getSerializable(RESOURCES_MAP_BOUNDS_ARG) as? ResourcesMapBounds
     }
 
     private var resourceDetailBottomSheet: BottomSheetDialog? = null

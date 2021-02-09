@@ -2,6 +2,7 @@ package com.example.meep_android_test.data.domainmodels
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 @Parcelize
 data class ResourcesMapBounds(
@@ -9,7 +10,7 @@ data class ResourcesMapBounds(
     val top: Double,
     val right: Double,
     val bottom: Double
-): Parcelable
+): Parcelable, Serializable
 
 val ResourcesMapBounds.lowerLeftLatLng: LatLng
     get() = LatLng(bottom, left)
